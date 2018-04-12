@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        %d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="STDOUT"/>
+  </root>
+  <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.FileAppender">
+  
+  <file>logs/log.log</file>
+
+  <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+    <Pattern>
+      %d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
+    </Pattern>
+  </encoder>
+
+</appender>
+<logger name="com.roche.diagonestic.rudi.application.controller" additivity="false" level="debug">
+  <appender-ref ref="SAVE-TO-FILE"/>
+</logger>
+<logger name="com.roche.diagonestic.rudi.application.service" additivity="false" level="debug">
+  <appender-ref ref="SAVE-TO-FILE"/>
+</logger>
+ 
+</configuration>

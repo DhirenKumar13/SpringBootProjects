@@ -1,0 +1,7 @@
+22-02-2018 14:55:17.246 [http-nio-8085-exec-1] INFO  c.r.d.r.a.service.RUDIService.insert - inserting RUDIRequest
+22-02-2018 14:56:23.184 [http-nio-8085-exec-2] INFO  c.r.d.r.a.service.RUDIService.getRUDIByRequestId - getting RUDI
+22-02-2018 15:19:32.482 [http-nio-8085-exec-1] INFO  c.r.d.r.a.service.RUDIService.getRUDIByRequestId - getting RUDI
+22-02-2018 15:19:32.529 [http-nio-8085-exec-1] INFO  c.r.d.r.a.controller.RudiController.handleException - Rudi is not found
+22-02-2018 15:22:27.737 [http-nio-8085-exec-3] INFO  c.r.d.r.a.service.RUDIService.getRUDIByRequestId - getting RUDI
+22-02-2018 15:26:08.886 [http-nio-8085-exec-2] INFO  c.r.d.r.a.service.RUDIService.getRUDIByRequestId - getting RUDI
+22-02-2018 15:26:22.922 [http-nio-8085-exec-2] INFO  c.r.d.r.a.controller.RudiController.handleException - Rudi is not found
