@@ -2,12 +2,19 @@ package com.inSpringBoot.webapp.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 public class Todo {
-    private int id;
+    
+	private int id;
     private String user;
+    
+    @Size(min=10, message="Description should be atleast 10 characters long")
     private String desc;
     private Date targetDate;
     private boolean isDone;
+    
+    public Todo() {	super(); }
 
     public Todo(int id, String user, String desc, Date targetDate,
             boolean isDone) {
