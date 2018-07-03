@@ -1,14 +1,18 @@
 package com.inSpringBoot.webapp.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,12 +28,22 @@ public class TodoController {
 	@Autowired	
 	private TodoService todoService;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder webBinder) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+		webBinder.registerCustomEditor(Date.class, new CustomDateEditor(format, false));
+	}
+	
 	@RequestMapping("/list-todos")
 	public String listTodos(ModelMap model) {
-		String name = (String) model.get("name");
+		String name = getNameAttribute(model);
 		List<Todo> retrieveTodos = todoService.retrieveTodos(name);
 		model.put("list", retrieveTodos);
 		return "list-todo";
+	}
+
+	private String getNameAttribute(ModelMap model) {
+		return (String) model.get("name");
 	}
 	
 	@RequestMapping(value = "/delete-todo", method=RequestMethod.GET)
@@ -50,7 +64,7 @@ public class TodoController {
 		if(results.hasErrors()) {
 			return "todo";
 		}
-		todo.setUser((String) model.get("name"));
+		todo.setUser(getNameAttribute(model));
 		todoService.updateTodo(todo);
 		return "redirect:/list-todos";
 	}
@@ -66,8 +80,8 @@ public class TodoController {
 		if(results.hasErrors()) {
 			return "todo";
 		}
-		String name = (String) model.get("name");
-		todoService.addTodo(name, todo.getDesc(), new Date(), false);
+		String name = getNameAttribute(model);
+		todoService.addTodo(name, todo.getDesc(), todo.getTargetDate(), false);
 		return "redirect:/list-todos";
 	}
 }

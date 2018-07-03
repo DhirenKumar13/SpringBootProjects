@@ -17,10 +17,11 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping("/login")
+	@RequestMapping("/")
 	public String handleLoginRouts(ModelMap model) {
-		//model.put("name", name);
-		return "login";
+		model.put("name", "Dhiren");
+		// return "login";
+		return "welcome";
 	}
 	
 	@PostMapping("/loginUser")
